@@ -1,0 +1,112 @@
+// This file configures the initialization of Sentry on the server.
+// The config you add here will be used whenever the server handles a request.
+// https://docs.sentry.io/platforms/javascript/guides/nextjs/
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model - Admin authentication
+model User {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  passwordHash     String
+  name             String
+  role             String   @default("admin")
+  twoFactorEnabled Boolean  @default(false)
+  twoFactorSecret  String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+// Project model - Portfolio projects
+model Project {
+  id             String    @id @default(cuid())
+  title_fr       String
+  title_en       String
+  description_fr String    @db.Text
+  description_en String    @db.Text
+  imageUrl       String?
+  technologies   String[]
+  githubUrl      String?
+  liveUrl        String?
+  startDate      DateTime
+  endDate        DateTime?
+  featured       Boolean   @default(false)
+  order          Int       @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([featured, order])
+}
+
+// Skill model - Technical skills
+model Skill {
+  id        String   @id @default(cuid())
+  name      String
+  category  String // Frontend, Backend, Tools, etc.
+  level     Int // 1-100
+  iconUrl   String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category, order])
+}
+
+// BlogPost model - Blog articles
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title_fr    String
+  title_en    String
+  content_fr  String    @db.Text
+  content_en  String    @db.Text
+  excerpt_fr  String?
+  excerpt_en  String?
+  coverImage  String?
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([published, publishedAt])
+}
+
+// Folder model - File system folders
+model Folder {
+  id        String   @id @default(cuid())
+  name      String
+  parentId  String?
+  parent    Folder?  @relation("FolderHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children  Folder[] @relation("FolderHierarchy")
+  files     File[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parentId])
+}
+
+// File model - Uploaded files
+model File {
+  id           String   @id @default(cuid())
+  name         String
+  originalName String
+  path         String // Path in Supabase Storage
+  size         Int // bytes
+  mimeType     String
+  folderId     String?
+  folder       Folder?  @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  isPublic     Boolean  @default(true)
+  downloadUrl  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([folderId])
+  @@index([isPublic])
+}

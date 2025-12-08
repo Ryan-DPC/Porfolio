@@ -1,0 +1,45 @@
+services:
+  # Database Service (PostgreSQL)
+  db:
+    image: postgres:15-alpine
+    container_name: portfolio-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: portfolio
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - portfolio-network
+
+  # Application Service (Next.js)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: portfolio-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      # Database connection string pointing to the 'db' service
+      DATABASE_URL: postgres://user:password@db:5432/portfolio
+      # Pass other env vars from .env file or define here
+      # IMPORTANT: You still need your Supabase keys for Storage
+      NEXT_PUBLIC_APP_URL: http://localhost:3000
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - portfolio-network
+
+volumes:
+  postgres_data:
+
+
+networks:
+  portfolio-network:
+    driver: bridge

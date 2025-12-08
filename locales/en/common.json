@@ -1,0 +1,144 @@
+{
+    "nav": {
+        "home": "Home",
+        "projects": "Projects",
+        "skills": "Skills",
+        "blog": "Blog",
+        "contact": "Contact",
+        "files": "Files"
+    },
+    "home": {
+        "hero": {
+            "greeting": "Hi, I'm",
+            "role": "Student at ETML in Development",
+            "tagline": "Quality in execution — thought before action.",
+            "cta": "View my projects",
+            "contact": "Contact me"
+        },
+        "about": {
+            "title": "About",
+            "bio": "I am someone very serious who favors quality in execution. I take the time to think before acting to obtain a clean and lasting result. I play basketball and I am currently developing Ether, a game launcher allowing you to buy, sell and publish your own games."
+        }
+    },
+    "projects": {
+        "title": "My Projects",
+        "featured": "Featured projects",
+        "all": "All projects",
+        "viewProject": "View project",
+        "viewCode": "View code",
+        "technologies": "Technologies",
+        "timeline": "Timeline",
+        "ongoing": "Ongoing"
+    },
+    "skills": {
+        "title": "Skills",
+        "categories": {
+            "frontend": "Frontend",
+            "backend": "Backend",
+            "tools": "Tools",
+            "other": "Other"
+        }
+    },
+    "blog": {
+        "title": "Blog",
+        "readMore": "Read more",
+        "readingTime": "min read",
+        "publishedOn": "Published on",
+        "noPosts": "No posts yet"
+    },
+    "contact": {
+        "title": "Contact Me",
+        "name": "Name",
+        "email": "Email",
+        "subject": "Subject",
+        "message": "Message",
+        "send": "Send",
+        "sending": "Sending...",
+        "success": "Your message has been sent successfully!",
+        "error": "An error occurred. Please try again."
+    },
+    "files": {
+        "title": "Files",
+        "downloadAll": "Download all as ZIP",
+        "gallery": "Gallery",
+        "list": "List",
+        "download": "Download",
+        "size": "Size",
+        "modified": "Modified",
+        "noFiles": "No files available"
+    },
+    "cv": {
+        "title": "My Resume",
+        "download": "Download Resume",
+        "view": "View online"
+    },
+    "footer": {
+        "rights": "All rights reserved",
+        "madeWith": "Made with",
+        "by": "by"
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "create": "Create",
+        "search": "Search",
+        "filter": "Filter",
+        "close": "Close",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous"
+    },
+    "admin": {
+        "login": {
+            "title": "Admin Login",
+            "email": "Email",
+            "password": "Password",
+            "twoFactorCode": "2FA Code",
+            "submit": "Sign in",
+            "error": "Incorrect email or password"
+        },
+        "dashboard": {
+            "title": "Dashboard",
+            "welcome": "Welcome",
+            "stats": {
+                "projects": "Projects",
+                "skills": "Skills",
+                "blogPosts": "Posts",
+                "files": "Files"
+            }
+        },
+        "projects": {
+            "title": "Project Management",
+            "new": "New Project",
+            "edit": "Edit Project",
+            "titleFr": "Title (FR)",
+            "titleEn": "Title (EN)",
+            "descriptionFr": "Description (FR)",
+            "descriptionEn": "Description (EN)",
+            "technologies": "Technologies",
+            "githubUrl": "GitHub URL",
+            "liveUrl": "Live URL",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "featured": "Featured",
+            "order": "Order"
+        },
+        "files": {
+            "title": "File Management",
+            "upload": "Upload",
+            "newFolder": "New Folder",
+            "rename": "Rename",
+            "move": "Move",
+            "delete": "Delete",
+            "downloadZip": "Download as ZIP",
+            "folderName": "Folder name",
+            "selectFolder": "Select folder",
+            "maxSize": "Max size: 1GB per file"
+        }
+    }
+}
