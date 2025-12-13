@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { locales, localeNames, type Locale } from '@/lib/i18n/settings';
+import { locales, type Locale } from '@/lib/i18n/settings';
 
 export function LanguageSwitcher() {
     const pathname = usePathname();
@@ -26,8 +26,8 @@ export function LanguageSwitcher() {
                     whileTap={{ scale: 0.9 }}
                     onClick={() => switchLocale(locale)}
                     className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${currentLocale === locale
-                            ? 'bg-electric-blue text-white'
-                            : 'text-text-dark-secondary dark:text-text-secondary hover:bg-dark-surface dark:hover:bg-light-surface'
+                        ? 'bg-electric-blue text-white'
+                        : 'text-text-dark-secondary dark:text-text-secondary hover:bg-dark-surface dark:hover:bg-light-surface'
                         }`}
                 >
                     {locale.toUpperCase()}

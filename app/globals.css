@@ -16,7 +16,7 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-dark-border dark:border-light-border;
   }
 }
 

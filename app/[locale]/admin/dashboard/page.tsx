@@ -16,7 +16,7 @@ interface DashboardStats {
 
 export default function AdminDashboardPage() {
     const t = useTranslations('admin.dashboard');
-    const tNav = useTranslations('nav');
+
     const router = useRouter();
     const [stats, setStats] = useState<DashboardStats | null>(null);
     const [loading, setLoading] = useState(true);

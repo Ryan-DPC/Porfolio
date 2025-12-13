@@ -5,10 +5,10 @@ const BUCKET_NAME = 'portfolio-files';
 export interface UploadFileOptions {
     file: File;
     path: string;
-    isPublic?: boolean;
+
 }
 
-export async function uploadFile({ file, path, isPublic = true }: UploadFileOptions) {
+export async function uploadFile({ file, path }: UploadFileOptions) {
     const { data, error } = await supabaseAdmin.storage
         .from(BUCKET_NAME)
         .upload(path, file, {

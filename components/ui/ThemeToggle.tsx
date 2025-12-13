@@ -1,6 +1,6 @@
 'use client';
 
-import { useTheme } from '@/hooks/useThemeHook';
+import { useTheme } from '@/hooks/useTheme';
 import { motion } from 'framer-motion';
 
 export function ThemeToggle() {

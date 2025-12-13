@@ -10,7 +10,7 @@ export async function GET(
 
         const zipBuffer = await createZipFromFolder(folderId);
 
-        return new NextResponse(zipBuffer, {
+        return new NextResponse(new Blob([zipBuffer as any]), {
             headers: {
                 'Content-Type': 'application/zip',
                 'Content-Disposition': `attachment; filename="folder_${folderId}.zip"`,

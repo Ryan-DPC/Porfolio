@@ -1,11 +1,11 @@
-import { SignJWT, jwtVerify } from 'jose';
+import { SignJWT, jwtVerify, type JWTPayload } from 'jose';
 import { cookies } from 'next/headers';
 import { prisma } from '@/lib/prisma';
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET!);
 const JWT_REFRESH_SECRET = new TextEncoder().encode(process.env.JWT_REFRESH_SECRET!);
 
-export interface SessionPayload {
+export interface SessionPayload extends JWTPayload {
     userId: string;
     email: string;
     role: string;

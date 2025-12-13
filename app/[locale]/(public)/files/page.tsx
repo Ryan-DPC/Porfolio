@@ -4,13 +4,13 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import type { File, Folder } from '@/types';
-import { formatFileSize, isImageFile } from '@/lib/utils/files';
+import { formatFileSize, isImageFile } from '@/lib/utils/file-formatting';
 import { Button } from '@/components/ui/Button';
 
 export default function FilesPage() {
     const t = useTranslations();
     const [files, setFiles] = useState<File[]>([]);
-    const [folders, setFolders] = useState<Folder[]>([]);
+
     const [loading, setLoading] = useState(true);
     const [viewMode, setViewMode] = useState<'gallery' | 'list'>('gallery');
 
@@ -19,7 +19,7 @@ export default function FilesPage() {
             .then((res) => res.json())
             .then((data) => {
                 setFiles(data.files || []);
-                setFolders(data.folders || []);
+
                 setLoading(false);
             })
             .catch(() => setLoading(false));

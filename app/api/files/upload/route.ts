@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAuth } from '@/lib/auth/session';
-import { uploadFile, getPublicUrl } from '@/lib/supabase/storage';
+import { uploadFile } from '@/lib/supabase/storage';
 import { validateFile } from '@/lib/utils/files';
 
 export async function POST(request: Request) {
@@ -40,7 +40,6 @@ export async function POST(request: Request) {
             const { url } = await uploadFile({
                 file,
                 path,
-                isPublic: true,
             });
 
             // Save to database

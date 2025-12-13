@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAuth } from '@/lib/auth/session';
-import { uploadFile } from '@/lib/supabase/storage';
-import { validateFile } from '@/lib/utils/files';
+
 
 // GET /api/files - List all files (optionally filtered by folderId)
 export async function GET(request: Request) {
