@@ -19,7 +19,7 @@ export default function ProjectsPage() {
         fetch('/api/projects')
             .then((res) => res.json())
             .then((data) => {
-                setProjects(data);
+                setProjects(Array.isArray(data) ? data : []);
                 setLoading(false);
             })
             .catch(() => setLoading(false));
