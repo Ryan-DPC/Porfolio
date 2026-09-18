@@ -2,10 +2,11 @@
 
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { AdminNav } from '@/components/layout/AdminNav';
 
 interface DashboardStats {
     projects: number;
@@ -16,8 +17,9 @@ interface DashboardStats {
 
 export default function AdminDashboardPage() {
     const t = useTranslations('admin.dashboard');
-
     const router = useRouter();
+    const pathname = usePathname();
+    const locale = pathname?.split('/')[1] || 'fr';
     const [stats, setStats] = useState<DashboardStats | null>(null);
     const [loading, setLoading] = useState(true);
 
@@ -25,27 +27,19 @@ export default function AdminDashboardPage() {
         fetch('/api/admin/dashboard')
             .then((res) => {
                 if (!res.ok) {
-                    router.push('/fr/admin/login');
+                    router.push(`/${locale}/admin/login`);
                     return;
                 }
                 return res.json();
             })
             .then((data) => {
-                if (data) {
-                    setStats(data.stats);
-                }
+                if (data) setStats(data.stats);
                 setLoading(false);
             })
             .catch(() => {
-                router.push('/fr/admin/login');
+                router.push(`/${locale}/admin/login`);
             });
-    }, [router]);
-
-    const handleLogout = async () => {
-        await fetch('/api/auth/logout', { method: 'POST' });
-        router.push('/fr/admin/login');
-        router.refresh();
-    };
+    }, [router, locale]);
 
     if (loading) {
         return (
@@ -55,30 +49,27 @@ export default function AdminDashboardPage() {
         );
     }
 
+    const statCards = [
+        { label: t('stats.projects'), value: stats?.projects ?? 0, href: `/${locale}/admin/projects` },
+        { label: t('stats.skills'), value: stats?.skills ?? 0, href: `/${locale}/admin/skills` },
+        { label: t('stats.blogPosts'), value: stats?.blogPosts ?? 0, href: `/${locale}/admin/blog` },
+        { label: t('stats.files'), value: stats?.files ?? 0, href: `/${locale}/admin/files` },
+    ];
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-dark-bg via-dark-surface to-dark-bg dark:from-light-bg dark:via-light-surface dark:to-light-bg">
             <div className="container-custom section-padding">
-                <div className="flex justify-between items-center mb-8">
-                    <motion.h1
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl font-bold gradient-text"
-                    >
-                        {t('title')}
-                    </motion.h1>
-                    <Button variant="outline" onClick={handleLogout}>
-                        Déconnexion
-                    </Button>
-                </div>
+                <AdminNav />
+                <motion.h1
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-4xl font-bold gradient-text mb-8"
+                >
+                    {t('title')}
+                </motion.h1>
 
-                {/* Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                    {stats && [
-                        { label: t('stats.projects'), value: stats.projects, icon: '💼', href: '/fr/admin/projects' },
-                        { label: t('stats.skills'), value: stats.skills, icon: '🚀', href: '/fr/admin/skills' },
-                        { label: t('stats.blogPosts'), value: stats.blogPosts, icon: '📝', href: '/fr/admin/blog' },
-                        { label: t('stats.files'), value: stats.files, icon: '📁', href: '/fr/admin/files' },
-                    ].map((stat, index) => (
+                    {statCards.map((stat, index) => (
                         <motion.div
                             key={stat.label}
                             initial={{ opacity: 0, y: 20 }}
@@ -87,7 +78,6 @@ export default function AdminDashboardPage() {
                             onClick={() => router.push(stat.href)}
                         >
                             <Card hover className="text-center cursor-pointer">
-                                <div className="text-4xl mb-2">{stat.icon}</div>
                                 <div className="text-3xl font-bold text-electric-blue mb-2">
                                     {stat.value}
                                 </div>
@@ -99,30 +89,29 @@ export default function AdminDashboardPage() {
                     ))}
                 </div>
 
-                {/* Quick Actions */}
                 <div>
-                    <h2 className="text-2xl font-bold mb-4">Actions rapides</h2>
+                    <h2 className="text-2xl font-bold mb-4">{t('quickActions')}</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <Button
                             variant="primary"
                             className="w-full"
-                            onClick={() => router.push('/fr/admin/projects/new')}
+                            onClick={() => router.push(`/${locale}/admin/projects/new`)}
                         >
-                            Nouveau Projet
+                            {t('newProject')}
                         </Button>
                         <Button
                             variant="primary"
                             className="w-full"
-                            onClick={() => router.push('/fr/admin/blog/new')}
+                            onClick={() => router.push(`/${locale}/admin/blog/new`)}
                         >
-                            Nouvel Article
+                            {t('newPost')}
                         </Button>
                         <Button
                             variant="primary"
                             className="w-full"
-                            onClick={() => router.push('/fr/admin/files')}
+                            onClick={() => router.push(`/${locale}/admin/files`)}
                         >
-                            Gérer les Fichiers
+                            {t('manageFiles')}
                         </Button>
                     </div>
                 </div>
