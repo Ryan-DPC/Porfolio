@@ -52,6 +52,9 @@ export default function BlogPage() {
                     <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
                         {t('blog.title')}
                     </h1>
+                    <p className="text-lg text-text-dark-secondary dark:text-text-secondary max-w-2xl mx-auto">
+                        {t('blog.subtitle')}
+                    </p>
                 </motion.div>
 
                 {posts.length === 0 ? (
@@ -75,27 +78,36 @@ export default function BlogPage() {
                                     transition={{ delay: index * 0.1 }}
                                 >
                                     <Link href={`/${locale}/blog/${post.slug}`}>
-                                        <Card hover className="h-full">
-                                            {post.coverImage && (
-                                                <img
-                                                    src={post.coverImage}
-                                                    alt={title}
-                                                    className="w-full h-40 object-cover rounded-md mb-4"
-                                                />
-                                            )}
-                                            <h2 className="text-xl font-bold mb-2">{title}</h2>
-                                            <p className="text-text-dark-secondary dark:text-text-secondary mb-4">
-                                                {excerpt}
-                                            </p>
-                                            {post.publishedAt && (
-                                                <p className="text-sm text-electric-blue">
-                                                    {t('blog.publishedOn')}{' '}
-                                                    {formatDate(post.publishedAt, locale)}
+                                        <Card hover className="h-full overflow-hidden p-0">
+                                            <div className="aspect-[16/10] bg-dark-border/40 dark:bg-light-border/40 relative">
+                                                {post.coverImage ? (
+                                                    <img
+                                                        src={post.coverImage}
+                                                        alt={title}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                ) : (
+                                                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-text-dark-secondary dark:text-text-secondary px-4 text-center">
+                                                        <span className="text-3xl opacity-60">▣</span>
+                                                        <span className="text-sm">{t('blog.photoPlaceholder')}</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="p-6">
+                                                <h2 className="text-xl font-bold mb-2">{title}</h2>
+                                                <p className="text-text-dark-secondary dark:text-text-secondary mb-4">
+                                                    {excerpt}
                                                 </p>
-                                            )}
-                                            <span className="inline-block mt-3 text-sm text-electric-blue">
-                                                {t('blog.readMore')} →
-                                            </span>
+                                                {post.publishedAt && (
+                                                    <p className="text-sm text-electric-blue">
+                                                        {t('blog.publishedOn')}{' '}
+                                                        {formatDate(post.publishedAt, locale)}
+                                                    </p>
+                                                )}
+                                                <span className="inline-block mt-3 text-sm text-electric-blue">
+                                                    {t('blog.readMore')} →
+                                                </span>
+                                            </div>
                                         </Card>
                                     </Link>
                                 </motion.div>

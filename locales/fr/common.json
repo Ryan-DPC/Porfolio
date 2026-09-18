@@ -3,7 +3,7 @@
         "home": "Accueil",
         "projects": "Projets",
         "skills": "Compétences",
-        "blog": "Blog",
+        "blog": "Avancement",
         "contact": "Contact",
         "files": "Fichiers"
     },
@@ -22,13 +22,15 @@
     },
     "projects": {
         "title": "Mes Projets",
-        "featured": "Projets en vedette",
+        "subtitle": "Projets issus de mon GitHub — Vext, jeux tests Ether, portfolio et plus.",
+        "featured": "En vedette",
         "all": "Tous les projets",
         "viewProject": "Voir le projet",
         "viewCode": "Voir le code",
         "technologies": "Technologies",
         "timeline": "Timeline",
-        "ongoing": "En cours"
+        "ongoing": "En cours",
+        "empty": "Aucun projet pour le moment."
     },
     "skills": {
         "title": "Compétences",
@@ -41,12 +43,14 @@
         }
     },
     "blog": {
-        "title": "Blog",
-        "readMore": "Lire la suite",
+        "title": "Journal d'avancement",
+        "subtitle": "Photos, captures et notes de progression sur mes projets (Vext, Crimsons, jeux tests…).",
+        "readMore": "Voir l'avancement",
         "readingTime": "min de lecture",
-        "publishedOn": "Publié le",
-        "noPosts": "Aucun article pour le moment",
-        "notFound": "Article introuvable"
+        "publishedOn": "Mis à jour le",
+        "noPosts": "Aucun journal pour le moment — les photos d'avancement arriveront ici.",
+        "notFound": "Entrée introuvable",
+        "photoPlaceholder": "Photo d'avancement à venir"
     },
     "contact": {
         "title": "Me Contacter",

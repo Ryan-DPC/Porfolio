@@ -93,6 +93,11 @@ export default function BlogPostPage() {
                             className="w-full rounded-lg mb-8 object-cover max-h-96"
                         />
                     )}
+                    {!post.coverImage && (
+                        <div className="w-full rounded-lg mb-8 aspect-[16/9] bg-dark-border/40 dark:bg-light-border/40 flex items-center justify-center text-text-dark-secondary dark:text-text-secondary text-sm">
+                            {t('blog.photoPlaceholder')}
+                        </div>
+                    )}
                     <div className="prose prose-invert dark:prose-neutral max-w-none whitespace-pre-wrap leading-relaxed text-lg">
                         {content}
                     </div>

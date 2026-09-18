@@ -2,6 +2,16 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAuth } from '@/lib/auth/session';
 import { blogPostSchema } from '@/lib/utils/validation';
+import { progressPosts } from '@/lib/data/progress-posts';
+
+function serializePost(post: (typeof progressPosts)[number]) {
+    return {
+        ...post,
+        publishedAt: post.publishedAt instanceof Date ? post.publishedAt.toISOString() : post.publishedAt,
+        createdAt: post.createdAt instanceof Date ? post.createdAt.toISOString() : post.createdAt,
+        updatedAt: post.updatedAt instanceof Date ? post.updatedAt.toISOString() : post.updatedAt,
+    };
+}
 
 export async function GET(
     _request: Request,
@@ -9,25 +19,34 @@ export async function GET(
 ) {
     try {
         const { id } = await params;
-        const post = await prisma.blogPost.findFirst({
-            where: {
-                OR: [{ id }, { slug: id }],
-            },
-        });
 
-        if (!post) {
+        try {
+            const post = await prisma.blogPost.findFirst({
+                where: {
+                    OR: [{ id }, { slug: id }],
+                },
+            });
+
+            if (post) {
+                if (!post.published) {
+                    try {
+                        await requireAuth();
+                    } catch {
+                        return NextResponse.json({ error: 'Post not found' }, { status: 404 });
+                    }
+                }
+                return NextResponse.json(post);
+            }
+        } catch (dbError) {
+            console.warn('Blog DB unavailable, checking progress posts:', dbError);
+        }
+
+        const fallback = progressPosts.find((p) => p.id === id || p.slug === id);
+        if (!fallback || !fallback.published) {
             return NextResponse.json({ error: 'Post not found' }, { status: 404 });
         }
 
-        if (!post.published) {
-            try {
-                await requireAuth();
-            } catch {
-                return NextResponse.json({ error: 'Post not found' }, { status: 404 });
-            }
-        }
-
-        return NextResponse.json(post);
+        return NextResponse.json(serializePost(fallback));
     } catch (error) {
         console.error('Get blog post error:', error);
         return NextResponse.json(

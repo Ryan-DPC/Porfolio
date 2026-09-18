@@ -3,7 +3,7 @@
         "home": "Home",
         "projects": "Projects",
         "skills": "Skills",
-        "blog": "Blog",
+        "blog": "Progress",
         "contact": "Contact",
         "files": "Files"
     },
@@ -22,13 +22,15 @@
     },
     "projects": {
         "title": "My Projects",
-        "featured": "Featured projects",
+        "subtitle": "Projects from my GitHub — Vext, Ether test games, portfolio, and more.",
+        "featured": "Featured",
         "all": "All projects",
         "viewProject": "View project",
         "viewCode": "View code",
         "technologies": "Technologies",
         "timeline": "Timeline",
-        "ongoing": "Ongoing"
+        "ongoing": "Ongoing",
+        "empty": "No projects yet."
     },
     "skills": {
         "title": "Skills",
@@ -41,12 +43,14 @@
         }
     },
     "blog": {
-        "title": "Blog",
-        "readMore": "Read more",
+        "title": "Progress journal",
+        "subtitle": "Photos, screenshots, and notes tracking progress on my projects (Vext, Crimsons, test games…).",
+        "readMore": "View progress",
         "readingTime": "min read",
-        "publishedOn": "Published on",
-        "noPosts": "No posts yet",
-        "notFound": "Post not found"
+        "publishedOn": "Updated on",
+        "noPosts": "No journal entries yet — progress photos will show up here.",
+        "notFound": "Entry not found",
+        "photoPlaceholder": "Progress photo coming soon"
     },
     "contact": {
         "title": "Contact Me",
