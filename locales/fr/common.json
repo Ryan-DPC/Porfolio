@@ -3,7 +3,7 @@
         "home": "Accueil",
         "projects": "Projets",
         "skills": "Compétences",
-        "blog": "Blog",
+        "blog": "Avancement",
         "contact": "Contact",
         "files": "Fichiers"
     },
@@ -22,16 +22,19 @@
     },
     "projects": {
         "title": "Mes Projets",
-        "featured": "Projets en vedette",
+        "subtitle": "Projets issus de mon GitHub — Vext, jeux tests Ether, portfolio et plus.",
+        "featured": "En vedette",
         "all": "Tous les projets",
         "viewProject": "Voir le projet",
         "viewCode": "Voir le code",
         "technologies": "Technologies",
         "timeline": "Timeline",
-        "ongoing": "En cours"
+        "ongoing": "En cours",
+        "empty": "Aucun projet pour le moment."
     },
     "skills": {
         "title": "Compétences",
+        "empty": "Aucune compétence pour le moment",
         "categories": {
             "frontend": "Frontend",
             "backend": "Backend",
@@ -40,11 +43,14 @@
         }
     },
     "blog": {
-        "title": "Blog",
-        "readMore": "Lire la suite",
+        "title": "Journal d'avancement",
+        "subtitle": "Photos, captures et notes de progression sur mes projets (Vext, Crimsons, jeux tests…).",
+        "readMore": "Voir l'avancement",
         "readingTime": "min de lecture",
-        "publishedOn": "Publié le",
-        "noPosts": "Aucun article pour le moment"
+        "publishedOn": "Mis à jour le",
+        "noPosts": "Aucun journal pour le moment — les photos d'avancement arriveront ici.",
+        "notFound": "Entrée introuvable",
+        "photoPlaceholder": "Photo d'avancement à venir"
     },
     "contact": {
         "title": "Me Contacter",
@@ -91,7 +97,9 @@
         "close": "Fermer",
         "back": "Retour",
         "next": "Suivant",
-        "previous": "Précédent"
+        "previous": "Précédent",
+        "confirmDelete": "Supprimer cet élément ?",
+        "open": "Ouvrir"
     },
     "admin": {
         "login": {
@@ -105,6 +113,10 @@
         "dashboard": {
             "title": "Tableau de bord",
             "welcome": "Bienvenue",
+            "quickActions": "Actions rapides",
+            "newProject": "Nouveau Projet",
+            "newPost": "Nouvel Article",
+            "manageFiles": "Gérer les Fichiers",
             "stats": {
                 "projects": "Projets",
                 "skills": "Compétences",
@@ -116,17 +128,45 @@
             "title": "Gestion des Projets",
             "new": "Nouveau Projet",
             "edit": "Modifier le Projet",
+            "empty": "Aucun projet",
             "titleFr": "Titre (FR)",
             "titleEn": "Titre (EN)",
             "descriptionFr": "Description (FR)",
             "descriptionEn": "Description (EN)",
             "technologies": "Technologies",
+            "imageUrl": "URL de l'image",
             "githubUrl": "URL GitHub",
             "liveUrl": "URL Live",
             "startDate": "Date de début",
             "endDate": "Date de fin",
             "featured": "En vedette",
             "order": "Ordre"
+        },
+        "skills": {
+            "title": "Gestion des Compétences",
+            "new": "Nouvelle Compétence",
+            "edit": "Modifier la Compétence",
+            "empty": "Aucune compétence",
+            "name": "Nom",
+            "category": "Catégorie",
+            "level": "Niveau (1-100)",
+            "order": "Ordre"
+        },
+        "blog": {
+            "title": "Gestion du Blog",
+            "new": "Nouvel Article",
+            "edit": "Modifier l'Article",
+            "empty": "Aucun article",
+            "slug": "Slug",
+            "titleFr": "Titre (FR)",
+            "titleEn": "Titre (EN)",
+            "excerptFr": "Extrait (FR)",
+            "excerptEn": "Extrait (EN)",
+            "contentFr": "Contenu (FR)",
+            "contentEn": "Contenu (EN)",
+            "coverImage": "Image de couverture",
+            "published": "Publié",
+            "draft": "Brouillon"
         },
         "files": {
             "title": "Gestion des Fichiers",
@@ -138,7 +178,8 @@
             "downloadZip": "Télécharger en ZIP",
             "folderName": "Nom du dossier",
             "selectFolder": "Sélectionner un dossier",
-            "maxSize": "Taille max : 1GB par fichier"
+            "maxSize": "Taille max : 1GB par fichier",
+            "empty": "Aucun fichier dans ce dossier"
         }
     }
 }

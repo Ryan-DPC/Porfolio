@@ -3,7 +3,7 @@
         "home": "Home",
         "projects": "Projects",
         "skills": "Skills",
-        "blog": "Blog",
+        "blog": "Progress",
         "contact": "Contact",
         "files": "Files"
     },
@@ -22,16 +22,19 @@
     },
     "projects": {
         "title": "My Projects",
-        "featured": "Featured projects",
+        "subtitle": "Projects from my GitHub — Vext, Ether test games, portfolio, and more.",
+        "featured": "Featured",
         "all": "All projects",
         "viewProject": "View project",
         "viewCode": "View code",
         "technologies": "Technologies",
         "timeline": "Timeline",
-        "ongoing": "Ongoing"
+        "ongoing": "Ongoing",
+        "empty": "No projects yet."
     },
     "skills": {
         "title": "Skills",
+        "empty": "No skills yet",
         "categories": {
             "frontend": "Frontend",
             "backend": "Backend",
@@ -40,11 +43,14 @@
         }
     },
     "blog": {
-        "title": "Blog",
-        "readMore": "Read more",
+        "title": "Progress journal",
+        "subtitle": "Photos, screenshots, and notes tracking progress on my projects (Vext, Crimsons, test games…).",
+        "readMore": "View progress",
         "readingTime": "min read",
-        "publishedOn": "Published on",
-        "noPosts": "No posts yet"
+        "publishedOn": "Updated on",
+        "noPosts": "No journal entries yet — progress photos will show up here.",
+        "notFound": "Entry not found",
+        "photoPlaceholder": "Progress photo coming soon"
     },
     "contact": {
         "title": "Contact Me",
@@ -91,7 +97,9 @@
         "close": "Close",
         "back": "Back",
         "next": "Next",
-        "previous": "Previous"
+        "previous": "Previous",
+        "confirmDelete": "Delete this item?",
+        "open": "Open"
     },
     "admin": {
         "login": {
@@ -105,6 +113,10 @@
         "dashboard": {
             "title": "Dashboard",
             "welcome": "Welcome",
+            "quickActions": "Quick actions",
+            "newProject": "New Project",
+            "newPost": "New Post",
+            "manageFiles": "Manage Files",
             "stats": {
                 "projects": "Projects",
                 "skills": "Skills",
@@ -116,17 +128,45 @@
             "title": "Project Management",
             "new": "New Project",
             "edit": "Edit Project",
+            "empty": "No projects",
             "titleFr": "Title (FR)",
             "titleEn": "Title (EN)",
             "descriptionFr": "Description (FR)",
             "descriptionEn": "Description (EN)",
             "technologies": "Technologies",
+            "imageUrl": "Image URL",
             "githubUrl": "GitHub URL",
             "liveUrl": "Live URL",
             "startDate": "Start Date",
             "endDate": "End Date",
             "featured": "Featured",
             "order": "Order"
+        },
+        "skills": {
+            "title": "Skill Management",
+            "new": "New Skill",
+            "edit": "Edit Skill",
+            "empty": "No skills",
+            "name": "Name",
+            "category": "Category",
+            "level": "Level (1-100)",
+            "order": "Order"
+        },
+        "blog": {
+            "title": "Blog Management",
+            "new": "New Post",
+            "edit": "Edit Post",
+            "empty": "No posts",
+            "slug": "Slug",
+            "titleFr": "Title (FR)",
+            "titleEn": "Title (EN)",
+            "excerptFr": "Excerpt (FR)",
+            "excerptEn": "Excerpt (EN)",
+            "contentFr": "Content (FR)",
+            "contentEn": "Content (EN)",
+            "coverImage": "Cover image",
+            "published": "Published",
+            "draft": "Draft"
         },
         "files": {
             "title": "File Management",
@@ -138,7 +178,8 @@
             "downloadZip": "Download as ZIP",
             "folderName": "Folder name",
             "selectFolder": "Select folder",
-            "maxSize": "Max size: 1GB per file"
+            "maxSize": "Max size: 1GB per file",
+            "empty": "No files in this folder"
         }
     }
 }
