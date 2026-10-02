@@ -78,7 +78,7 @@ export default function BlogPage() {
                                     transition={{ delay: index * 0.1 }}
                                 >
                                     <Link href={`/${locale}/blog/${post.slug}`}>
-                                        <Card hover className="h-full overflow-hidden p-0">
+                                        <Card hover padded={false} className="h-full overflow-hidden">
                                             <div className="aspect-[16/10] bg-dark-border/40 dark:bg-light-border/40 relative">
                                                 {post.coverImage ? (
                                                     <img

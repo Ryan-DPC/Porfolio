@@ -30,7 +30,8 @@
         "technologies": "Technologies",
         "timeline": "Timeline",
         "ongoing": "Ongoing",
-        "empty": "No projects yet."
+        "empty": "No projects yet.",
+        "noImage": "Photo coming soon"
     },
     "skills": {
         "title": "Skills",
@@ -114,6 +115,7 @@
             "title": "Dashboard",
             "welcome": "Welcome",
             "quickActions": "Quick actions",
+            "manageMedia": "Photos & Resume",
             "newProject": "New Project",
             "newPost": "New Post",
             "manageFiles": "Manage Files",
@@ -123,6 +125,25 @@
                 "blogPosts": "Posts",
                 "files": "Files"
             }
+        },
+        "media": {
+            "title": "Media",
+            "subtitle": "Upload project photos and your resume — they show up automatically on the public pages.",
+            "cvTitle": "My resume (PDF)",
+            "cvHelp": "Shown via the “Download Resume” button on the home and contact pages.",
+            "cvUpload": "Upload resume",
+            "cvReplace": "Replace resume",
+            "cvCurrent": "Current resume",
+            "cvSaved": "Resume saved — now visible on the site.",
+            "cvRemoved": "Resume removed.",
+            "projectsTitle": "Project photos",
+            "projectsHelp": "One cover image per project. It appears on the Projects page.",
+            "uploadImage": "Add photo",
+            "replaceImage": "Change photo",
+            "noImage": "No photo",
+            "projectImageSaved": "Project photo saved.",
+            "projectImageRemoved": "Project photo removed.",
+            "preview": "View page"
         },
         "projects": {
             "title": "Project Management",

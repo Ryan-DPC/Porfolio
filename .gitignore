@@ -39,6 +39,10 @@ next-env.d.ts
 prisma/dev.db
 prisma/dev.db-journal
 
+# Local media uploads (fallback when Supabase unavailable)
+public/uploads
+
+
 # IDE
 .vscode
 .idea

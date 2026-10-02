@@ -52,7 +52,21 @@ export default function ProjectsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.08 }}
         >
-            <Card hover className="h-full flex flex-col">
+            <Card hover padded={false} className="h-full flex flex-col overflow-hidden">
+                <div className="aspect-[16/10] bg-dark-border/40 dark:bg-light-border/40">
+                    {project.imageUrl ? (
+                        <img
+                            src={project.imageUrl}
+                            alt={locale === 'fr' ? project.title_fr : project.title_en}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center text-sm text-text-dark-secondary dark:text-text-secondary">
+                            {t('projects.noImage')}
+                        </div>
+                    )}
+                </div>
+                <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-start justify-between gap-3 mb-3">
                     <h3 className="text-xl font-bold">
                         {locale === 'fr' ? project.title_fr : project.title_en}
@@ -106,6 +120,7 @@ export default function ProjectsPage() {
                         )}
                     </div>
                 )}
+                </div>
             </Card>
         </motion.div>
     );

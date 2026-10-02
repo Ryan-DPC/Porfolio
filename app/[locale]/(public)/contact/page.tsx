@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Input } from '@/components/ui/Input';
 import { Textarea } from '@/components/ui/Textarea';
 import { Button } from '@/components/ui/Button';
+import { CvDownload } from '@/components/ui/CvDownload';
 
 export default function ContactPage() {
     const t = useTranslations();
@@ -48,6 +49,9 @@ export default function ContactPage() {
                     <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
                         {t('contact.title')}
                     </h1>
+                    <div className="mt-4 flex justify-center">
+                        <CvDownload />
+                    </div>
                 </motion.div>
 
                 <motion.form

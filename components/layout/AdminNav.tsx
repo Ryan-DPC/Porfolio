@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/Button';
 
 const links = [
     { path: 'dashboard', label: 'Dashboard' },
+    { path: 'media', label: 'Médias' },
     { path: 'projects', label: 'Projets' },
     { path: 'skills', label: 'Compétences' },
     { path: 'blog', label: 'Blog' },

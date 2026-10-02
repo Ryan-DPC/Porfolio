@@ -30,7 +30,8 @@
         "technologies": "Technologies",
         "timeline": "Timeline",
         "ongoing": "En cours",
-        "empty": "Aucun projet pour le moment."
+        "empty": "Aucun projet pour le moment.",
+        "noImage": "Photo à venir"
     },
     "skills": {
         "title": "Compétences",
@@ -114,6 +115,7 @@
             "title": "Tableau de bord",
             "welcome": "Bienvenue",
             "quickActions": "Actions rapides",
+            "manageMedia": "Photos & CV",
             "newProject": "Nouveau Projet",
             "newPost": "Nouvel Article",
             "manageFiles": "Gérer les Fichiers",
@@ -123,6 +125,25 @@
                 "blogPosts": "Articles",
                 "files": "Fichiers"
             }
+        },
+        "media": {
+            "title": "Médias",
+            "subtitle": "Uploade les photos de tes projets et ton CV — ils apparaissent automatiquement sur les pages publiques.",
+            "cvTitle": "Mon CV (PDF)",
+            "cvHelp": "Visible via le bouton « Télécharger le CV » sur l’accueil et la page contact.",
+            "cvUpload": "Uploader le CV",
+            "cvReplace": "Remplacer le CV",
+            "cvCurrent": "CV actuel",
+            "cvSaved": "CV enregistré — visible sur le site.",
+            "cvRemoved": "CV supprimé.",
+            "projectsTitle": "Photos des projets",
+            "projectsHelp": "Une image par projet. Elle s’affiche en couverture sur la page Projets.",
+            "uploadImage": "Ajouter une photo",
+            "replaceImage": "Changer la photo",
+            "noImage": "Aucune photo",
+            "projectImageSaved": "Photo projet enregistrée.",
+            "projectImageRemoved": "Photo projet supprimée.",
+            "preview": "Voir la page"
         },
         "projects": {
             "title": "Gestion des Projets",

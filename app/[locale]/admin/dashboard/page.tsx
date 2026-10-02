@@ -91,7 +91,14 @@ export default function AdminDashboardPage() {
 
                 <div>
                     <h2 className="text-2xl font-bold mb-4">{t('quickActions')}</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <Button
+                            variant="primary"
+                            className="w-full"
+                            onClick={() => router.push(`/${locale}/admin/media`)}
+                        >
+                            {t('manageMedia')}
+                        </Button>
                         <Button
                             variant="primary"
                             className="w-full"

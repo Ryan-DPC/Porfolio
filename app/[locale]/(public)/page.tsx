@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
+import { CvDownload } from '@/components/ui/CvDownload';
 
 export default function HomePage() {
     const t = useTranslations();
@@ -52,6 +53,7 @@ export default function HomePage() {
                             <Link href={`/${locale}/contact`}>
                                 <Button size="lg" variant="outline">{t('home.hero.contact')}</Button>
                             </Link>
+                            <CvDownload size="lg" variant="ghost" />
                         </motion.div>
                     </motion.div>
                 </div>
@@ -64,14 +66,15 @@ export default function HomePage() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="max-w-3xl mx-auto"
+                        className="max-w-3xl mx-auto text-center"
                     >
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6">
                             {t('home.about.title')}
                         </h2>
-                        <p className="text-lg text-text-dark-secondary dark:text-text-secondary leading-relaxed">
+                        <p className="text-lg text-text-dark-secondary dark:text-text-secondary leading-relaxed mb-6">
                             {t('home.about.bio')}
                         </p>
+                        <CvDownload variant="outline" />
                     </motion.div>
                 </div>
             </section>

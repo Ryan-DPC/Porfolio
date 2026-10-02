@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireAuth } from '@/lib/auth/session';
 import { projectSchema } from '@/lib/utils/validation';
+import { getMergedProjects } from '@/lib/media/projects';
 import { githubProjects } from '@/lib/data/github-projects';
 
 function serializeProjects(projects: typeof githubProjects) {
@@ -20,16 +21,12 @@ export async function GET(request: Request) {
         const featured = searchParams.get('featured') === 'true';
 
         try {
-            const projects = await prisma.project.findMany({
-                where: featured ? { featured: true } : undefined,
-                orderBy: [{ order: 'asc' }, { createdAt: 'desc' }],
-            });
-
+            const projects = await getMergedProjects(featured);
             if (projects.length > 0) {
                 return NextResponse.json(projects);
             }
         } catch (dbError) {
-            console.warn('Projects DB unavailable, using GitHub catalog:', dbError);
+            console.warn('Projects merge failed, using GitHub catalog:', dbError);
         }
 
         const fallback = featured
