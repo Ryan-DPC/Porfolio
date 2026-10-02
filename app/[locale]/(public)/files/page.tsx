@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import type { File, Folder } from '@/types';
+import type { File } from '@/types';
 import { formatFileSize, isImageFile } from '@/lib/utils/file-formatting';
 import { Button } from '@/components/ui/Button';
 

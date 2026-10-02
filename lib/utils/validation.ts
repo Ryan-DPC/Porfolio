@@ -1,9 +1,14 @@
 import { z } from 'zod';
 
+const optionalUrl = z.preprocess(
+    (val) => (val === '' || val === undefined ? null : val),
+    z.string().url().nullable().optional()
+);
+
 export const loginSchema = z.object({
     email: z.string().email('Invalid email address'),
     password: z.string().min(8, 'Password must be at least 8 characters'),
-    twoFactorCode: z.string().length(6).optional(),
+    twoFactorCode: z.string().length(6).optional().or(z.literal('')),
 });
 
 export const projectSchema = z.object({
@@ -11,12 +16,15 @@ export const projectSchema = z.object({
     title_en: z.string().min(1, 'English title is required'),
     description_fr: z.string().min(1, 'French description is required'),
     description_en: z.string().min(1, 'English description is required'),
-    imageUrl: z.string().url().optional().nullable(),
+    imageUrl: optionalUrl,
     technologies: z.array(z.string()).min(1, 'At least one technology is required'),
-    githubUrl: z.string().url().optional().nullable(),
-    liveUrl: z.string().url().optional().nullable(),
+    githubUrl: optionalUrl,
+    liveUrl: optionalUrl,
     startDate: z.string().or(z.date()),
-    endDate: z.string().or(z.date()).optional().nullable(),
+    endDate: z.preprocess(
+        (val) => (val === '' || val === undefined ? null : val),
+        z.string().or(z.date()).nullable().optional()
+    ),
     featured: z.boolean().default(false),
     order: z.number().int().min(0).default(0),
 });
@@ -25,7 +33,7 @@ export const skillSchema = z.object({
     name: z.string().min(1, 'Name is required'),
     category: z.string().min(1, 'Category is required'),
     level: z.number().int().min(1).max(100),
-    iconUrl: z.string().url().optional().nullable(),
+    iconUrl: optionalUrl,
     order: z.number().int().min(0).default(0),
 });
 
@@ -37,9 +45,12 @@ export const blogPostSchema = z.object({
     content_en: z.string().min(1, 'English content is required'),
     excerpt_fr: z.string().optional().nullable(),
     excerpt_en: z.string().optional().nullable(),
-    coverImage: z.string().url().optional().nullable(),
+    coverImage: optionalUrl,
     published: z.boolean().default(false),
-    publishedAt: z.string().or(z.date()).optional().nullable(),
+    publishedAt: z.preprocess(
+        (val) => (val === '' || val === undefined ? null : val),
+        z.string().or(z.date()).nullable().optional()
+    ),
 });
 
 export const contactSchema = z.object({

@@ -1,18 +1,18 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { requireAuth } from '@/lib/auth/session';
+import { getSession, requireAuth } from '@/lib/auth/session';
 
-
-// GET /api/files - List all files (optionally filtered by folderId)
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
         const folderId = searchParams.get('folderId');
+        const all = searchParams.get('all') === 'true';
+        const session = all ? await getSession() : null;
 
         const files = await prisma.file.findMany({
             where: {
                 folderId: folderId || null,
-                isPublic: true,
+                ...(session ? {} : { isPublic: true }),
             },
             orderBy: { createdAt: 'desc' },
         });
@@ -34,7 +34,6 @@ export async function GET(request: Request) {
     }
 }
 
-// DELETE /api/files - Delete file (admin only)
 export async function DELETE(request: Request) {
     try {
         await requireAuth();
@@ -60,11 +59,9 @@ export async function DELETE(request: Request) {
             );
         }
 
-        // Delete from Supabase Storage
         const { deleteFile } = await import('@/lib/supabase/storage');
         await deleteFile(file.path);
 
-        // Delete from database
         await prisma.file.delete({
             where: { id },
         });

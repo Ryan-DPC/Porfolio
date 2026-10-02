@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Input } from '@/components/ui/Input';
@@ -10,6 +10,8 @@ import { Button } from '@/components/ui/Button';
 export default function AdminLoginPage() {
     const t = useTranslations('admin.login');
     const router = useRouter();
+    const pathname = usePathname();
+    const locale = pathname?.split('/')[1] || 'fr';
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -27,7 +29,10 @@ export default function AdminLoginPage() {
             const response = await fetch('/api/auth/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: JSON.stringify({
+                    ...formData,
+                    twoFactorCode: formData.twoFactorCode || undefined,
+                }),
             });
 
             const data = await response.json();
@@ -36,8 +41,7 @@ export default function AdminLoginPage() {
                 throw new Error(data.error || t('error'));
             }
 
-            // Redirect to dashboard
-            router.push('/fr/admin/dashboard');
+            router.push(`/${locale}/admin/dashboard`);
             router.refresh();
         } catch (err) {
             setError(err instanceof Error ? err.message : t('error'));
