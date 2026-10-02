@@ -1,17 +1,53 @@
 /**
- * Seed GitHub projects + progress journal into Postgres.
+ * Seed GitHub projects + progress journal + admin into Postgres.
  *
  * Usage (with DATABASE_URL set):
  *   npx tsx prisma/seed.ts
  *   # or: npm run db:seed
+ *
+ * Admin password: set ADMIN_PASSWORD to override the default hash,
+ * or leave unset to seed ryan.depina@eduvaud.ch with the configured hash.
  */
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 import { githubProjects } from '../lib/data/github-projects';
 import { progressPosts } from '../lib/data/progress-posts';
 
 const prisma = new PrismaClient();
 
+const DEFAULT_ADMIN_EMAIL = 'ryan.depina@eduvaud.ch';
+/** bcrypt hash for the portfolio admin password (plaintext never committed). */
+const DEFAULT_ADMIN_PASSWORD_HASH =
+    '$2a$10$pT1sC3BZI33/uABGI8CCf.0.9fNPCIXXF/oS..SSgUINrnVcEoeqC';
+
+async function seedAdmin() {
+    const email = process.env.ADMIN_EMAIL || DEFAULT_ADMIN_EMAIL;
+    const name = process.env.ADMIN_NAME || 'Ryan De Pina Correia';
+    const passwordHash = process.env.ADMIN_PASSWORD
+        ? await bcrypt.hash(process.env.ADMIN_PASSWORD, 10)
+        : DEFAULT_ADMIN_PASSWORD_HASH;
+
+    const user = await prisma.user.upsert({
+        where: { email },
+        update: {
+            passwordHash,
+            name,
+            role: 'admin',
+        },
+        create: {
+            email,
+            passwordHash,
+            name,
+            role: 'admin',
+        },
+    });
+
+    console.log('Admin ready:', user.email);
+}
+
 async function main() {
+    await seedAdmin();
+
     for (const project of githubProjects) {
         const existing = await prisma.project.findFirst({
             where: { githubUrl: project.githubUrl },

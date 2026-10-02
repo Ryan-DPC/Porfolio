@@ -28,45 +28,18 @@ npx prisma db push
 
 ## 👤 Créer l'Utilisateur Admin
 
-### Option 1: Via Prisma Studio
+Le seed crée déjà l’admin `ryan.depina@eduvaud.ch` (hash bcrypt, pas le mot de passe en clair).
+
 ```bash
-npx prisma studio
-```
-- Aller dans `User`
-- Créer un nouvel utilisateur avec:
-  - email: votre email
-  - passwordHash: utiliser [bcrypt generator](https://bcrypt-generator.com/) avec votre mot de passe
-  - name: votre nom
-  - role: "admin"
-
-### Option 2: Via Script
-Créer `scripts/create-admin.ts`:
-
-```typescript
-import { prisma } from '../lib/prisma';
-import bcrypt from 'bcryptjs';
-
-async function main() {
-  const hashedPassword = await bcrypt.hash('votre-mot-de-passe', 10);
-  
-  await prisma.user.create({
-    data: {
-      email: 'votre@email.com',
-      passwordHash: hashedPassword,
-      name: 'Votre Nom',
-      role: 'admin',
-    },
-  });
-  
-  console.log('Admin créé avec succès!');
-}
-
-main();
+# Avec Postgres up + .env rempli :
+npx prisma db push
+npm run db:seed
 ```
 
-Exécuter:
+Pour forcer email/mot de passe depuis `.env` (`ADMIN_EMAIL` / `ADMIN_PASSWORD`) :
+
 ```bash
-npx tsx scripts/create-admin.ts
+npm run db:create-admin
 ```
 
 ## 🚀 Démarrer le Projet
